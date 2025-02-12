@@ -10,9 +10,22 @@ public class TelaOrientacoes extends JFrame {
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        setResizable(false);
+
+        // Use getResource to load the image
+        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/sql-guide-image.jpg"));
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(new BoxLayout(backgroundPanel, BoxLayout.Y_AXIS));
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setOpaque(false); // Make the panel transparent
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel orientacoesLabel = new JLabel(
@@ -37,6 +50,9 @@ public class TelaOrientacoes extends JFrame {
         );
         orientacoesLabel.setFont(new Font("Arial", Font.BOLD, 16));
         orientacoesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        orientacoesLabel.setOpaque(true); // Make the label opaque
+        orientacoesLabel.setBackground(Color.WHITE);
+
 
         JButton voltarButton = new JButton("Voltar");
         voltarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -49,7 +65,8 @@ public class TelaOrientacoes extends JFrame {
         panel.add(Box.createVerticalStrut(20));
         panel.add(voltarButton);
 
-        this.add(panel);
+        backgroundPanel.add(panel);
+        this.setContentPane(backgroundPanel);
         this.setVisible(true);
     }
 }

@@ -16,6 +16,17 @@ public class TelaRanking extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        // Use getResource to load the image
+        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/sql-guide-image.jpg"));
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(new BorderLayout());
+
         ArrayList<Aluno> alunos = new ListaDeQuestoes().buscarRanking();
 
         String[] columnNames = {"Nome", "Quantidade de Acertos"};
@@ -27,11 +38,12 @@ public class TelaRanking extends JFrame {
                     aluno.getQuantidadeAcertos()
             };
             model.addRow(row);
-        }//linhas
+        }
 
         JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);//barra de rolagem
-        table.setFillsViewportHeight(true);//para preencher toda a tabela
+        table.setFillsViewportHeight(true);
+        table.setBackground(Color.WHITE); // Set the background color to white
+        JScrollPane scrollPane = new JScrollPane(table);
 
         JButton voltarButton = new JButton("Voltar");
         voltarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -40,12 +52,14 @@ public class TelaRanking extends JFrame {
             new TelaInicial();
         });
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(voltarButton, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false); // Make the panel transparent
+        buttonPanel.add(voltarButton);
 
-        this.add(panel);
+        backgroundPanel.add(scrollPane, BorderLayout.CENTER);
+        backgroundPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        this.setContentPane(backgroundPanel);
         this.setVisible(true);
     }
 }

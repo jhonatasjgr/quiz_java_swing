@@ -28,9 +28,21 @@ public class TelaQuestao {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
+        // Use getResource to load the image
+        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/sql-guide-image.jpg"));
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(new BoxLayout(backgroundPanel, BoxLayout.Y_AXIS));
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        panel.setOpaque(false); // Make the panel transparent
 
         JLabel enunciadoLabel = new JLabel(
                 "<html>" +
@@ -41,9 +53,13 @@ public class TelaQuestao {
         );
         enunciadoLabel.setFont(new Font("Arial", Font.BOLD, 18));
         enunciadoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        enunciadoLabel.setOpaque(true); // Make the label opaque
+        enunciadoLabel.setBackground(Color.WHITE);
+
 
         JPanel botoesPanel = new JPanel();
         botoesPanel.setLayout(new GridLayout(4, 1, 10, 10));
+        botoesPanel.setOpaque(false); // Make the panel transparent
 
         JRadioButton opcaoButton1 = new JRadioButton(questoes.get(0).opcao1);
         JRadioButton opcaoButton2 = new JRadioButton(questoes.get(0).opcao2);
@@ -82,7 +98,8 @@ public class TelaQuestao {
         panel.add(Box.createVerticalStrut(20));
         panel.add(confirmarButton);
 
-        frame.add(panel);
+        backgroundPanel.add(panel);
+        frame.setContentPane(backgroundPanel);
         frame.setVisible(true);
     }
 
