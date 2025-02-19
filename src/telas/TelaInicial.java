@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TelaInicial extends JFrame {
-    String orientacoesSobreOJogo = "Orientações sobre o Quizz";
+
 
     public TelaInicial() {
         super("Quiz POO & SQL");
@@ -12,7 +12,6 @@ public class TelaInicial extends JFrame {
         this.setLocationRelativeTo(null); // Centralizar a janela
         setResizable(false);
 
-        // Use getResource to load the image
         ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/sql-guide-image.jpg"));
         JPanel backgroundPanel = new JPanel() {
             @Override

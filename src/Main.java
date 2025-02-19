@@ -12,6 +12,7 @@ public class Main {
         tocarMusica("C:\\Users\\JHONATAS\\Documents\\GitHub\\Programação Orientada a Objetos\\quiz_java_swing\\resources\\sound\\quiz_game_sound.wav");
         TelaInicial telaInicial = new TelaInicial();
     }
+
     public static void tocarMusica(String src) {
         try {
             File audio = new File(src);

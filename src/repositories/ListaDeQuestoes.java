@@ -11,12 +11,6 @@ import java.util.List;
 
 public class ListaDeQuestoes {
 
-
-
-    public ListaDeQuestoes(){
-
-    }
-
     public ArrayList<Questao> buscarQuestoes() {
         ArrayList<Questao> questoes = new ArrayList<>();
         try {

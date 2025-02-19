@@ -28,7 +28,6 @@ public class TelaQuestao {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        // Use getResource to load the image
         ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/sql-guide-image.jpg"));
         JPanel backgroundPanel = new JPanel() {
             @Override
